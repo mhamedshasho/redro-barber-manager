@@ -1,43 +1,46 @@
 # Redro Barber Manager
 
-Cloud-only manager dashboard connected to the dedicated Redro Barber Supabase project.
+Cloud-only, multi-tenant barber shop manager. Each Google account owns an isolated shop workspace in the shared Supabase project.
 
 ## Features
-- Daily appointment list, customer totals, attendance and queue preview.
-- Manager can search existing customer accounts and create or edit appointments.
-- Pending requests are visible by selecting the requested date.
-- Attendance is recorded as one mutually exclusive value: present or absent.
-- Appointment states: pending, confirmed, in service, completed, no-show, cancelled, rejected.
-- Printable appointment tickets and daily reports (browser print → Save as PDF).
-- Shop name, phone, and secure public logo upload (PNG/JPG/WebP, maximum 2 MB).
+- Google sign-in; first sign-in creates the user's own shop workspace automatically.
+- Shop-isolated customers, services, appointments, settings, logo, and theme colors.
+- Per-shop customer numbers (01, 02, 03...) generated atomically by PostgreSQL.
+- Daily appointment dashboard, attendance, queue, search, reports, and printable PDF tickets.
+- Shop settings: name, phone, logo, primary/background/panel/text colors.
+- Customer booking link generated for the current shop.
+- Service catalog: add services, set duration/optional price, activate/deactivate.
 - No appointment deletion control or DELETE database privilege.
-- Per-action duplicate lock and three-second cooldown, plus unique idempotency key for inserts.
+- Duplicate-action lock, three-second cooldown, and unique idempotency key for inserts.
 
-## First manager account
-1. Open the Manager app and create an account using email and password.
-2. Confirm the email if requested, then sign in.
-3. In Supabase Dashboard → Authentication → Users, copy that account's UUID.
-4. Run this SQL once in the Supabase SQL Editor, replacing the UUID and display name:
+## Google OAuth setup (one time)
+1. In Google Cloud Console, create an OAuth Client ID for a Web application.
+2. Add this authorized redirect URI:
+   `https://kqllombatzcpxjyltrsn.supabase.co/auth/v1/callback`
+3. In Supabase Dashboard → Authentication → Sign In / Providers → Google, enable Google and enter the Google Client ID and Client Secret.
+4. In Supabase Dashboard → Authentication → URL Configuration, add this redirect URL:
+   `https://mhamedshasho.github.io/**`
+5. Publish both repositories with GitHub Pages. Sign in with Google in Manager; the shop is created automatically.
 
-```sql
-insert into public.staff_members (user_id, role, display_name)
-values ('PASTE-AUTH-USER-UUID-HERE', 'owner', 'Shop Owner')
-on conflict (user_id) do update
-set role = excluded.role, display_name = excluded.display_name, active = true;
-```
-
-Public registrations cannot assign themselves staff access. Provision additional managers/barbers through the same trusted SQL process.
+Google OAuth requires your own free Google OAuth credentials. The app does not contain a client secret.
 
 ## Deployment
 GitHub Actions deploys the repository root to GitHub Pages. In repository Settings → Pages, select GitHub Actions.
 
-## Security
-- RLS is enabled on every exposed business table.
-- Customers can only access their own profile and appointments.
-- Staff membership is provisioned outside the public application.
+## Isolation and security
+- Every business row carries a shop_id; RLS restricts access to the current shop and its signed-in customers.
+- One Google account can own one shop. Each shop has its own independent customer-number counter.
+- Customers can only read/update their own profile and appointments.
+- The public shop lookup exposes only the shop name, phone, logo and theme needed by its booking page.
+- Queue lookup verifies appointment ownership before returning queue position.
 - No DELETE privilege is granted to authenticated users.
-- Queue numbers are calculated by a private database trigger and stored on each appointment; customer RLS exposes only the signed-in customer's own appointment and queue number.
 - Only the Supabase publishable key is used in the browser. Never add a service-role or secret key to this repository.
 
-## Cost policy
-Use Supabase Free and free GitHub Pages/public-repository Actions allowances only. Do not upgrade or enable paid add-ons. If free quotas are reached, pause usage instead of paying. Free-tier services may pause or become limited when quotas are exceeded.
+## Performance
+- No realtime subscriptions, polling, or background refresh loops.
+- Manager loads only the selected day's appointments, with bounded result sets.
+- Customer, service, settings, and appointment data are refreshed separately after relevant actions.
+- Database indexes support shop/date, customer, service and queue lookups.
+
+## Free-only rule
+Use Supabase Free and GitHub free public-repository/Pages allowances only. Do not upgrade or enable paid add-ons. If free quotas are reached, pause usage instead of paying. Free-tier services may pause or become limited when quotas are exceeded.
