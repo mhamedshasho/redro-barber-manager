@@ -1,36 +1,43 @@
 # Redro Barber Manager
 
-A mobile-first barber appointment and queue management frontend prototype.
+Cloud-only manager dashboard connected to the dedicated Redro Barber Supabase project.
 
-## Current stage
+## Features
+- Daily appointment list, customer totals, attendance and queue preview.
+- Manager can search existing customer accounts and create or edit appointments.
+- Pending requests are visible by selecting the requested date.
+- Attendance is recorded as one mutually exclusive value: present or absent.
+- Appointment states: pending, confirmed, in service, completed, no-show, cancelled, rejected.
+- Printable appointment tickets and daily reports (browser print → Save as PDF).
+- Shop name and phone settings.
+- No appointment deletion control or DELETE database privilege.
+- Per-action duplicate lock and three-second cooldown, plus unique idempotency key for inserts.
 
-- Frontend prototype only.
-- Uses temporary in-memory demo data for interface testing.
-- No local persistence, Local Mode, IndexedDB, or browser storage.
-- No Supabase connection yet.
-- No customer accounts or real appointment submissions yet.
-- The final application is Cloud Only and requires an internet connection.
+## First manager account
+1. Open the Manager app and create an account using email and password.
+2. Confirm the email if requested, then sign in.
+3. In Supabase Dashboard → Authentication → Users, copy that account's UUID.
+4. Run this SQL once in the Supabase SQL Editor, replacing the UUID and display name:
 
-## Included in this prototype
+```sql
+insert into public.staff_members (user_id, role, display_name)
+values ('PASTE-AUTH-USER-UUID-HERE', 'owner', 'Shop Owner')
+on conflict (user_id) do update
+set role = excluded.role, display_name = excluded.display_name, active = true;
+```
 
-- Daily appointment dashboard and customer counts.
-- Customer directory with automatically assigned demo IDs.
-- Appointment creation and editing.
-- Attendance controls (Present / Absent).
-- Queue preview and appointment status.
-- Shop name, phone, and logo preview settings.
-- Printable appointment ticket and daily report (Save as PDF through the browser print dialog).
-- Duplicate-action guard with a three-second cooldown.
-- No delete action.
+Public registrations cannot assign themselves staff access. Provision additional managers/barbers through the same trusted SQL process.
 
 ## Deployment
+GitHub Actions deploys the repository root to GitHub Pages. In repository Settings → Pages, select GitHub Actions.
 
-GitHub Actions deploys the static frontend to GitHub Pages on pushes to `main`.
+## Security
+- RLS is enabled on every exposed business table.
+- Customers can only access their own profile and appointments.
+- Staff membership is provisioned outside the public application.
+- No DELETE privilege is granted to authenticated users.
+- The queue RPC returns only the signed-in customer's own queue number and the count ahead; it does not expose other customers' records.
+- Only the Supabase publishable key is used in the browser. Never add a service-role or secret key to this repository.
 
-## Planned next stages
-
-1. Review and refine the Manager UI.
-2. Build the Client frontend prototype.
-3. Create a separate Redro Barber Supabase project and implement authentication, database, and row-level security.
-4. Connect both apps to the same Redro Barber backend.
-5. Build and test Android APK packages.
+## Cost policy
+Use Supabase Free and free GitHub Pages/public-repository Actions allowances only. Do not upgrade or enable paid add-ons. If free quotas are reached, pause usage instead of paying. Free-tier services may pause or become limited when quotas are exceeded.
