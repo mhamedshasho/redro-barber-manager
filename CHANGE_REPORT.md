@@ -88,3 +88,8 @@ Added a shared visual refinement layer for the manager: clearer hierarchy, stron
 ## Top-corner navigation
 
 On mobile, the navigation launcher was moved from the bottom edge to the top corner so it cannot cover save, cancel, or other form actions. Arabic RTL places it at the upper right; the CSS automatically places it at the upper left when the document switches to LTR English. The menu sheet now opens below the launcher.
+
+
+## Automatic availability generation
+
+The manager no longer requires entering every available time manually. For a selected date, the barber chooses a 30-minute or 60-minute interval and the system generates slots automatically from the configured opening time up to, but not including, the closing time. It skips the weekly day off, rejects past dates, avoids duplicate slots, and the customer app reads the generated slots with the same work-hour/day-off filters.
