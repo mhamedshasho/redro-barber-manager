@@ -93,3 +93,7 @@ On mobile, the navigation launcher was moved from the bottom edge to the top cor
 ## Automatic availability generation
 
 The manager no longer requires entering every available time manually. For a selected date, the barber chooses a 30-minute or 60-minute interval and the system generates slots automatically from the configured opening time up to, but not including, the closing time. It skips the weekly day off, rejects past dates, avoids duplicate slots, and the customer app reads the generated slots with the same work-hour/day-off filters.
+
+## Overnight opening hours
+
+Opening hours now support crossing midnight. For example, 12:00 to 01:00 generates slots from 12:00 through 00:30 and stops before 01:00. The customer app applies the same rule and explicitly rejects a stale or invalid booking with a message that the shop is closed at that time.
