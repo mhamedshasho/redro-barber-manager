@@ -149,3 +149,7 @@ Hardened the 12-hour clock helpers so missing or delayed time controls are ignor
 ## Live shop status indicator
 
 Added a corner status badge showing whether the shop is open, closed, or closed for the weekly day off. The indicator uses the saved opening and closing hours, supports overnight schedules, refreshes every minute, and updates after settings changes.
+
+## Automatic login reliability
+
+Added single-flight session restoration so startup cannot open duplicate cloud requests. The manager now shows a clear restoration state and recovers cleanly when the session or network is unavailable.
