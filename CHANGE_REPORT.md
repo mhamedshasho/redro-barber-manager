@@ -84,3 +84,7 @@ The manager's optional weekly day-off remains configurable for any day from Mond
 ## Coordinated UI refinement
 
 Added a shared visual refinement layer for the manager: clearer hierarchy, stronger touch targets, calmer toolbar treatment, improved mobile action placement, and more consistent focus and card states.
+
+## Top-corner navigation
+
+On mobile, the navigation launcher was moved from the bottom edge to the top corner so it cannot cover save, cancel, or other form actions. Arabic RTL places it at the upper right; the CSS automatically places it at the upper left when the document switches to LTR English. The menu sheet now opens below the launcher.
