@@ -9,7 +9,7 @@ Cloud-only manager dashboard connected to the dedicated Redro Barber Supabase pr
 - Attendance is recorded as one mutually exclusive value: present or absent.
 - Appointment states: pending, confirmed, in service, completed, no-show, cancelled, rejected.
 - Printable appointment tickets and daily reports (browser print → Save as PDF).
-- Shop name and phone settings.
+- Shop name, phone, and secure public logo upload (PNG/JPG/WebP, maximum 2 MB).
 - No appointment deletion control or DELETE database privilege.
 - Per-action duplicate lock and three-second cooldown, plus unique idempotency key for inserts.
 
@@ -36,7 +36,7 @@ GitHub Actions deploys the repository root to GitHub Pages. In repository Settin
 - Customers can only access their own profile and appointments.
 - Staff membership is provisioned outside the public application.
 - No DELETE privilege is granted to authenticated users.
-- The queue RPC returns only the signed-in customer's own queue number and the count ahead; it does not expose other customers' records.
+- Queue numbers are calculated by a private database trigger and stored on each appointment; customer RLS exposes only the signed-in customer's own appointment and queue number.
 - Only the Supabase publishable key is used in the browser. Never add a service-role or secret key to this repository.
 
 ## Cost policy
