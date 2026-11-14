@@ -145,3 +145,7 @@ The `chair_count` column was added to `shop_settings` successfully. Per-shop cha
 ## Null-safe time controls
 
 Hardened the 12-hour clock helpers so missing or delayed time controls are ignored safely instead of causing `Cannot set properties of null (setting 'value')` and blocking the manager interface.
+
+## Live shop status indicator
+
+Added a corner status badge showing whether the shop is open, closed, or closed for the weekly day off. The indicator uses the saved opening and closing hours, supports overnight schedules, refreshes every minute, and updates after settings changes.
