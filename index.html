@@ -12,7 +12,70 @@
 @media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{position:static}.nav{grid-template-columns:repeat(4,1fr)}.nav button{justify-content:center;text-align:center;font-size:11px;flex-direction:column;gap:5px}.shop-card{display:flex;align-items:center;gap:12px;padding-bottom:12px}.shop-avatar{margin:0}.side-note{display:none}}
 @media(max-width:720px){.app{padding:13px}.topbar{align-items:flex-start}.brand h1{font-size:15px}.connection{font-size:10px;padding:8px}.top-actions .btn{font-size:0;width:40px;padding:0}.pagehead{align-items:flex-start;flex-direction:column}.pagehead h2{font-size:23px}.stats{grid-template-columns:repeat(2,1fr);gap:9px}.stat{padding:13px}.stat strong{font-size:24px}.panel{padding:13px}.panelhead{align-items:flex-start;flex-direction:column}.queue{grid-template-columns:1fr}.formgrid,.settingsgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.nav{grid-template-columns:repeat(4,1fr)}.nav button{padding:9px 4px}.nav .ico{font-size:16px}.nav button span:last-child{font-size:10px}.toolbar{width:100%}.search{min-width:100%}.select{flex:1}.panelhead .btn{width:100%}}
 @media print{body{background:#fff;color:#111}.app,.modalback,.toast{display:none!important}#printArea{display:block!important;color:#111;font-family:Arial,sans-serif;padding:20px}#printArea h1{color:#b51f2b}#printArea table{min-width:0;color:#111}#printArea th,#printArea td{color:#111;border:1px solid #bbb;background:#fff;font-size:10px;padding:7px}#printArea .ticket{border:2px solid #222;padding:22px;max-width:650px;margin:20px auto}#printArea .ticket h2{font-size:28px}#printArea .ticket .ticketid{font-size:24px;color:#b51f2b;font-weight:bold}#printArea .ticket .line{border-top:1px dashed #888;margin:15px 0}}
-.nav-backdrop{display:none;position:fixed;inset:0;background:#0009;z-index:30}.nav-backdrop.open{display:block}.menu-toggle{display:none}.upcoming-count{min-width:34px;height:34px;padding:0 10px;border-radius:11px;background:#302125;color:#ff858a;display:grid;place-items:center;font-weight:800}.upcoming-list{display:grid;gap:9px}.upcoming-item{display:flex;align-items:center;gap:13px;padding:12px;border:1px solid var(--line);border-radius:14px;background:#14161a}.upcoming-time{min-width:75px;display:grid;gap:3px;color:#ff858a}.upcoming-time b{font-size:17px}.upcoming-time small,.upcoming-info small{font-size:10px;color:var(--muted)}.upcoming-info{min-width:0;flex:1;display:grid;gap:4px}.upcoming-info strong{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.upcoming-item .status{white-space:nowrap}@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{position:fixed;z-index:31;top:0;right:0;bottom:0;width:min(320px,86vw);height:100dvh;overflow:auto;border-radius:0 20px 20px 0;transform:translateX(110%);transition:transform .24s ease}.sidebar.mobile-open{transform:translateX(0);box-shadow:0 0 0 100vmax #0009}.nav{grid-template-columns:1fr}.nav button{justify-content:flex-start;text-align:right;font-size:14px;flex-direction:row;gap:12px}.shop-card{display:flex;align-items:center;gap:12px;padding-bottom:12px}.shop-avatar{margin:0}.side-note{display:none}.menu-toggle{display:inline-flex!important}}@media(max-width:720px){.topbar{align-items:center}.top-actions{gap:7px}.connection{display:none}.menu-toggle{display:inline-flex!important}.app{padding:12px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat strong{font-size:22px}.upcoming-item{gap:9px;padding:10px}.upcoming-time{min-width:65px}.upcoming-item .status{font-size:9px;padding:5px 7px}.tablewrap{border-radius:11px}table{min-width:720px}}\n@media(prefers-reduced-motion:no-preference){.panel,.stat,.sidebar,.modal,.btn,.iconbtn{transition:transform .2s ease,opacity .2s ease,border-color .2s ease,box-shadow .2s ease}.view.active .panel,.view.active .stat{animation:rdIn .32s both}.view.active .stat:nth-child(2){animation-delay:.04s}.view.active .stat:nth-child(3){animation-delay:.08s}.view.active .stat:nth-child(4){animation-delay:.12s}.btn:active,.iconbtn:active{transform:scale(.97)}@keyframes rdIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}\n</style>
+.nav-backdrop{display:none;position:fixed;inset:0;background:#0009;z-index:30}.nav-backdrop.open{display:block}.menu-toggle{display:none}.upcoming-count{min-width:34px;height:34px;padding:0 10px;border-radius:11px;background:#302125;color:#ff858a;display:grid;place-items:center;font-weight:800}.upcoming-list{display:grid;gap:9px}.upcoming-item{display:flex;align-items:center;gap:13px;padding:12px;border:1px solid var(--line);border-radius:14px;background:#14161a}.upcoming-time{min-width:75px;display:grid;gap:3px;color:#ff858a}.upcoming-time b{font-size:17px}.upcoming-time small,.upcoming-info small{font-size:10px;color:var(--muted)}.upcoming-info{min-width:0;flex:1;display:grid;gap:4px}.upcoming-info strong{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.upcoming-item .status{white-space:nowrap}@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{position:fixed;z-index:31;top:0;right:0;bottom:0;width:min(320px,86vw);height:100dvh;overflow:auto;border-radius:0 20px 20px 0;transform:translateX(110%);transition:transform .24s ease}.sidebar.mobile-open{transform:translateX(0);box-shadow:0 0 0 100vmax #0009}.nav{grid-template-columns:1fr}.nav button{justify-content:flex-start;text-align:right;font-size:14px;flex-direction:row;gap:12px}.shop-card{display:flex;align-items:center;gap:12px;padding-bottom:12px}.shop-avatar{margin:0}.side-note{display:none}.menu-toggle{display:inline-flex!important}}@media(max-width:720px){.topbar{align-items:center}.top-actions{gap:7px}.connection{display:none}.menu-toggle{display:inline-flex!important}.app{padding:12px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat strong{font-size:22px}.upcoming-item{gap:9px;padding:10px}.upcoming-time{min-width:65px}.upcoming-item .status{font-size:9px;padding:5px 7px}.tablewrap{border-radius:11px}table{min-width:720px}}\n@media(prefers-reduced-motion:no-preference){.panel,.stat,.sidebar,.modal,.btn,.iconbtn{transition:transform .2s ease,opacity .2s ease,border-color .2s ease,box-shadow .2s ease}.view.active .panel,.view.active .stat{animation:rdIn .32s both}.view.active .stat:nth-child(2){animation-delay:.04s}.view.active .stat:nth-child(3){animation-delay:.08s}.view.active .stat:nth-child(4){animation-delay:.12s}.btn:active,.iconbtn:active{transform:scale(.97)}@keyframes rdIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}\n
+:root{--blue:#55c98e;--radius:16px;--shadow:0 10px 28px #0003}
+body{background:#0d0e10;font-family:Tahoma,"Segoe UI",Arial,sans-serif;line-height:1.5}
+.app{max-width:1380px;padding:20px}
+.sidebar,.panel,.stat{background:#17191d;border-color:#292d34;box-shadow:0 8px 24px #0002}
+.panel{padding:20px;margin-bottom:14px}
+.stat{padding:17px}
+.pagehead{margin:4px 0 18px}
+.pagehead h2{font-size:25px;letter-spacing:-.4px}
+.btn,.iconbtn{min-height:42px;border-radius:12px;font-weight:600}
+.btn.primary{background:#e52d38;border-color:#e52d38;box-shadow:0 5px 16px #e52d3825}
+.nav button{min-height:46px}
+.nav button.active{background:#2a1b1e;box-shadow:inset -3px 0 #ed3942}
+.s-confirmed{color:#8fe0b4;background:#193126}
+.s-waiting{color:#f2c46f;background:#332918}
+.s-progress{color:#ff9298;background:#392025}
+.s-done{color:#7cddb0;background:#19352b}
+.s-absent{color:#c0c4cc;background:#292c32}
+.s-cancelled{color:#f09a9e;background:#382326}
+#cloudGate{background:#0d0e10f7!important}
+#cloudGate .gatebox{border-radius:22px!important;box-shadow:0 24px 70px #0008;padding:26px!important}
+#cloudGate input{min-height:48px}
+#cloudGate button{min-height:46px}
+.tablewrap{border-color:#292d34}
+th{background:#191b20}
+td{border-top-color:#292d34}
+input,select,textarea{min-height:44px}
+@media(max-width:1050px){
+.app{padding:14px 14px 94px}
+.layout{display:block}
+.sidebar{position:fixed;z-index:35;top:auto;right:10px;left:10px;bottom:calc(8px + env(safe-area-inset-bottom));width:auto;height:auto;max-height:none;overflow:visible;transform:none;border:1px solid #343840;border-radius:18px;padding:7px;background:#191b20ee;backdrop-filter:blur(18px);box-shadow:0 12px 40px #0009}
+.sidebar.mobile-open{transform:none;box-shadow:0 12px 40px #0009}
+.shop-card,.side-note,.nav-backdrop,.menu-toggle{display:none!important}
+.nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+.nav button{min-width:0;min-height:60px;padding:7px 2px;display:flex;flex-direction:column;justify-content:center;gap:4px;text-align:center;border-radius:12px;font-size:10px}
+.nav button span:last-child{font-size:10px;white-space:nowrap}
+.nav .ico{width:auto;font-size:18px;line-height:1.1}
+.nav button.active{box-shadow:inset 0 -2px #ed3942}
+}
+@media(max-width:720px){
+.app{padding:10px 10px calc(94px + env(safe-area-inset-bottom))}
+.topbar{gap:8px;margin-bottom:16px;align-items:center}
+.brand{gap:9px}.brandmark{width:40px;height:40px;border-radius:13px;font-size:21px}
+.brand h1{font-size:14px}.brand p{font-size:9px;letter-spacing:.08em}
+.top-actions{gap:6px}.top-actions #accountToggle{padding:8px 10px;width:auto;font-size:12px}.top-actions #quickAdd{padding:8px 10px;width:auto;font-size:12px}.top-actions #quickAdd span{display:none}
+.pagehead{flex-direction:row;align-items:center;gap:8px;margin:2px 0 13px}
+.pagehead h2{font-size:21px;margin:3px 0}.pagehead p{font-size:11px}.eyebrow{font-size:9px}
+.pagehead>.btn{width:auto;min-height:40px;padding:8px 11px;font-size:11px;white-space:nowrap}
+.stats{gap:8px;margin-bottom:12px}.stat{padding:12px;border-radius:14px}.stat-top{font-size:11px}.stat-icon{width:29px;height:29px;font-size:14px}.stat strong{font-size:23px;margin-top:5px}.stat small{font-size:9px}
+.panel{padding:13px;margin-bottom:11px;border-radius:15px}.panelhead{flex-direction:row;align-items:center;margin-bottom:10px}.panelhead h3{font-size:14px}.panelhead p{font-size:10px}
+.queue{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.queuecard{padding:10px}.queuecard .qnum{font-size:20px}.queuecard strong{font-size:12px}
+.toolbar{gap:7px}.search{min-width:100%}.search input{min-height:44px}.select{min-width:0;min-height:42px}
+.formgrid,.settingsgrid{gap:10px}.field{gap:5px}.field label{font-size:11px}
+.modal{padding:15px;border-radius:17px}.modalback{padding:10px}
+.upcoming-item{padding:9px;gap:8px}.upcoming-time{min-width:54px}.upcoming-time b{font-size:15px}.upcoming-info strong{font-size:11px}
+.tablewrap{max-width:100%}table{min-width:680px}
+}
+@media(prefers-reduced-motion:no-preference){
+.panel,.stat,.queuecard,.upcoming-item{transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.panel:hover,.stat:hover{border-color:#3b414b}
+.view.active .panel,.view.active .stat{animation:rdIn .22s ease both}
+}
+
+</style>
 </head>
 <body><style>#cloudGate{position:fixed;inset:0;z-index:100;background:#0d0e11f5;display:flex;align-items:center;justify-content:center;padding:16px}#cloudGate .gatebox{width:min(440px,100%);background:#1b1d22;border:1px solid #373b44;border-radius:20px;padding:24px}#cloudGate input{display:block;width:100%;margin:8px 0 12px;background:#111317;border:1px solid #383d46;border-radius:11px;padding:12px;color:#fff}#cloudGate button{border:1px solid #ef343d;background:#ef343d;color:white;border-radius:11px;padding:11px 14px;font-weight:700;cursor:pointer;margin-left:6px}#cloudGate button.alt{background:#292c33;border-color:#454a54}#cloudGate .gate-tabs{display:flex;gap:8px;margin-top:14px}#cloudGate .gate-tabs button{flex:1;margin:0}#cloudGate .gate-tabs button.active{background:#ef343d;border-color:#ef343d}#cloudGate .hidden{display:none!important}#cloudGate p{color:#aeb3bd;font-size:12px;line-height:1.7}#gateMessage{color:#ff9ca2;white-space:pre-wrap}</style><div id="cloudGate"><div class="gatebox"><div style="font-size:12px;color:#ff747a;font-weight:800">REDRO BARBER · CLOUD MANAGER</div><h2 id="gateTitle">تسجيل دخول الإدارة</h2><p>حساب سحابي بالبريد الإلكتروني وكلمة المرور.</p><div class="gate-tabs"><button type="button" id="loginMode" class="active">تسجيل الدخول</button><button type="button" id="signupMode" class="alt">إنشاء حساب</button></div><input id="gateName" type="text" placeholder="اسمك" autocomplete="name" class="hidden"><input id="gateEmail" type="email" placeholder="البريد الإلكتروني" autocomplete="email" dir="ltr"><input id="gatePassword" type="password" placeholder="كلمة المرور — 8 محارف على الأقل" autocomplete="current-password" dir="ltr"><button id="gateSubmit" style="width:100%;margin-top:8px">تسجيل الدخول</button><p>كل حساب ينشئ مساحة محل مستقلة محفوظة في Supabase.</p><p id="gateMessage"></p></div></div>
 <div class="app">
