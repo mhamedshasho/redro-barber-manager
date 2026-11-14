@@ -97,3 +97,7 @@ The manager no longer requires entering every available time manually. For a sel
 ## Overnight opening hours
 
 Opening hours now support crossing midnight. For example, 12:00 to 01:00 generates slots from 12:00 through 00:30 and stops before 01:00. The customer app applies the same rule and explicitly rejects a stale or invalid booking with a message that the shop is closed at that time.
+
+## Removed visible available-times feature
+
+The manager no longer shows or manages an available-times list. The barber sets only opening time, closing time and weekly day off. Manager-created appointments validate the requested time directly against that range and reject conflicts.
