@@ -51,3 +51,7 @@ A direct HTTP check confirmed that the Vercel hostnames redro-barber-manager.ver
 ## Vercel deployment correction
 
 The previous GitHub Pages diagnosis was based on the wrong deployment target. The confirmed live hosts are `https://redro-barber-manager.vercel.app/` and `https://redro-barber-client.vercel.app/`. The manager now points to the client Vercel host only for an optional manually copied booking link and never redirects the barber into the client application.
+
+## Faster initial barber-data loading
+
+The dashboard no longer loads the full customer directory during login. It now loads only shop settings and the selected day's appointments; appointment customer snapshots supply the names and phone details needed for the dashboard, queue, reports, and ticket printing. The full customer directory loads only when the customer section or a new/edit appointment workflow needs it. This reduces the initial data request set again while keeping customer records out of local storage.
