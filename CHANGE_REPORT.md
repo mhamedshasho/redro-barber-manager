@@ -41,3 +41,9 @@ All mutation buttons using the shared action guard now show `جارٍ التنف
 ## Data-loading performance pass
 
 The initial manager load now requests only the data required to show the dashboard: shop settings, customers, and the selected day's appointments. Services and appointment slots are no longer requested during login/dashboard startup; they load only when the user opens the appointment form or enters shop settings. This reduces the initial request set from five data loads to three and prevents secondary settings data from delaying the first useful view.
+
+## Manager-only mode and 404 diagnosis
+
+The manager no longer generates, loads, copies, or displays a customer-portal booking link. The settings screen now clearly states that this is a barber-only management workspace and that customer data does not need to be entered through a separate customer application.
+
+A direct HTTP check confirmed that both GitHub Pages URLs currently return HTTP 404. This is a repository Pages configuration/deployment issue, not a Supabase customer-data issue. The customer repository was not modified or enabled; only the manager deployment needs to be enabled if the manager is to be opened from GitHub Pages.
