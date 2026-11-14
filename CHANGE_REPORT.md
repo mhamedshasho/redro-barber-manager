@@ -141,3 +141,7 @@ Settings now have a clear category menu for shop identity, working hours and que
 ## Chair capacity migration completed
 
 The `chair_count` column was added to `shop_settings` successfully. Per-shop chair capacity can now be saved automatically by the manager and consumed by the customer queue alerts.
+
+## Null-safe time controls
+
+Hardened the 12-hour clock helpers so missing or delayed time controls are ignored safely instead of causing `Cannot set properties of null (setting 'value')` and blocking the manager interface.
