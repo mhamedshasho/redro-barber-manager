@@ -71,3 +71,12 @@ The manager now has a theme-aware visual layer that overrides the older fixed-co
 ## Full mobile-first manager UI rebuild
 
 The accumulated legacy manager stylesheet was removed and replaced with one coherent mobile-first design system. The rebuilt shell uses a compact sticky header, touch-sized controls, responsive two-column cards, a bottom mobile navigation launcher with a clean navigation sheet, mobile bottom-sheet modals, horizontal table scrolling, theme-driven surfaces, and consistent focus/press states. Existing HTML IDs, Supabase logic, appointments, reports and settings behavior were preserved so the rebuild changes the experience without changing business data or booking rules.
+
+## Removed service catalog
+
+The unused service feature was removed from the manager UI and booking form. Appointment creation now uses customer, date, time, duration, status and notes only. Existing appointment rows and service columns in the database were not deleted or migrated; historical data remains intact, but the manager no longer loads, edits, displays or inserts service records.
+
+
+## Availability rules
+
+The manager's optional weekly day-off remains configurable for any day from Monday through Sunday. The manager prevents adding slots on that day or outside the configured opening interval. The customer app now loads the same day-off and opening/closing settings, hides slots outside the interval, hides elapsed slots for today, and disables the booking button until a valid future slot exists.

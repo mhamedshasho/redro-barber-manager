@@ -6,10 +6,9 @@ Cloud-only, multi-tenant barber shop manager. Each account owns an isolated shop
 - Email/password manager sign-in; first sign-in creates the user's own shop workspace automatically.
 - Shop-isolated customers, services, appointments, settings, logo, and theme colors.
 - Per-shop customer numbers (01, 02, 03...) generated atomically by PostgreSQL.
-- Daily appointment dashboard, attendance, queue, search, reports, and printable PDF tickets.
+- Daily appointment dashboard, attendance, queue, search, reports, and printable PDF tickets. Appointments use customer, date, time, duration, status and notes; there is no service catalog.
 - Shop settings: name, phone, logo, primary/background/panel/text colors, plus six ready-made themes: Classic, Blue & Gold, Green & Gold, Black & Gold, Ruby & Gold, and Night Violet.
 - Optional Vercel customer-booking link that can be copied manually when needed.
-- Service catalog: add services, set duration/optional price, activate/deactivate.
 - No appointment deletion control or DELETE database privilege.
 - Duplicate-action lock, visible three-second cooldown, and unique idempotency key for inserts.
 
