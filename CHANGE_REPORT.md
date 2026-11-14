@@ -37,3 +37,7 @@ The visual layer now includes a calmer instructional banner, stronger focus stat
 Successful email/password authentication now passes the session returned by Supabase directly into the workspace-loading path instead of immediately calling `getSession()` a second time. This removes one redundant authentication round trip from login.
 
 All mutation buttons using the shared action guard now show `جارٍ التنفيذ…` while the request is active, then remain disabled for a visible three-second countdown (`انتظر 3 ثوانٍ` down to `انتظر 1 ثوانٍ`) before becoming available again. Duplicate presses are ignored with a clear Arabic message, while the existing per-action lock remains in place.
+
+## Data-loading performance pass
+
+The initial manager load now requests only the data required to show the dashboard: shop settings, customers, and the selected day's appointments. Services and appointment slots are no longer requested during login/dashboard startup; they load only when the user opens the appointment form or enters shop settings. This reduces the initial request set from five data loads to three and prevents secondary settings data from delaying the first useful view.
