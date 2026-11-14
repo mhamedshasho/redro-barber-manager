@@ -125,3 +125,7 @@ Added a cloud-backed chair-count setting with a default of three chairs. The cus
 ## Duplicate slot login fix
 
 Internal appointment-slot preparation now uses the unique key `(shop_id, slot_date, start_time)` with duplicate-safe upsert behavior. Existing slots are ignored rather than inserted again, and slot preparation no longer blocks manager login if a legacy conflict remains.
+
+## Always-visible settings and customer link
+
+Removed the settings show/hide control. The settings center is now always visible when opened. Added a prominent "نسخ رابط تطبيق الزبون" action that generates the current shop's Vercel customer URL from its cloud slug and copies it to the clipboard.
