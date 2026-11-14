@@ -89,7 +89,7 @@
 </main>
 </div>
 </div>
-<div class="modalback" id="customerModal"><div class="modal"><div class="modalhead"><h3>إضافة زبون للمحل</h3><button class="iconbtn" id="closeCustomerModal">✕</button></div><form id="customerForm"><div class="field"><label>اسم الزبون</label><input id="newCustomerName" required maxlength="120"></div><div class="field"><label>رقم الهاتف (اختياري)</label><input id="newCustomerPhone" type="tel" maxlength="40"></div><div class="modalfoot"><button class="btn primary" id="saveCustomer" type="submit">حفظ الزبون</button><button class="btn ghost" id="cancelCustomer" type="button">إلغاء</button></div></form></div></div>
+<div class="modalback" id="customerModal"><div class="modal"><div class="modalhead"><h3>إضافة زبون للمحل</h3><button class="iconbtn" id="closeCustomerModal">✕</button></div><form id="customerForm"><div class="field"><label>اسم الزبون</label><input id="newCustomerName" required maxlength="120"></div><div class="field"><label>رقم الهاتف — يستخدمه الزبون ككلمة مرور</label><input id="newCustomerPhone" type="tel" maxlength="40" required></div><div class="modalfoot"><button class="btn primary" id="saveCustomer" type="submit">حفظ الزبون</button><button class="btn ghost" id="cancelCustomer" type="button">إلغاء</button></div></form></div></div>
 <div class="modalback" id="appointmentModal"><div class="modal"><div class="modalhead"><h3 id="modalTitle">إضافة موعد</h3><button class="iconbtn" id="closeModal">✕</button></div><form id="appointmentForm"><input type="hidden" id="editingId"><div class="formgrid">
 <div class="field"><label>الزبون</label><select id="customerSelect" required></select><span class="hint">اختر حساب زبون مسجلاً من القائمة.</span></div>
 <div class="field"><label>التاريخ</label><input id="appointmentDate" type="date" required></div>
@@ -103,7 +103,7 @@
 <div id="printArea" class="hidden"></div><div class="toast" id="toast"></div>
 <script type="module">
 import {createClient} from "https://esm.sh/@supabase/supabase-js@2.57.4";
-const db=createClient("https://kqllombatzcpxjyltrsn.supabase.co","sb_publishable_VNKzf3XHKw3DllawtgqGVQ_guwe9Fyr");
+const db=createClient("https://kqllombatzcpxjyltrsn.supabase.co","sb_publishable_VNKzf3XHKw3DllawtgqGVQ_guwe9Fyr",{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const $=id=>document.getElementById(id),today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 const S={customers:[],appointments:[],services:[],shop:{id:null,slug:"",name:"Redro Barber",phone:"",logo:""},shopId:null,date:today(),busy:new Set(),cool:new Map()};
 const names={confirmed:"مؤكد",waiting:"بانتظار الموافقة",progress:"قيد الخدمة",done:"مكتمل",absent:"لم يحضر",cancelled:"ملغى",rejected:"مرفوض"};
