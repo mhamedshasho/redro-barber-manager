@@ -1,6 +1,6 @@
 # Redro Barber Manager
 
-Cloud-only, multi-tenant barber shop manager. Each account owns an isolated shop workspace in the shared Supabase project. The current product mode is **manager-only**: the barber manages customers, appointments, attendance, services, availability, settings and reports from this application without opening the customer portal.
+Cloud-only, multi-tenant barber shop manager. Each account owns an isolated shop workspace in the shared Supabase project. The barber uses this application to manage customers, appointments, attendance, services, availability, settings and reports. The customer portal is a separate optional Vercel application and is never opened automatically by the manager.
 
 ## Features
 - Email/password manager sign-in; first sign-in creates the user's own shop workspace automatically.
@@ -8,10 +8,18 @@ Cloud-only, multi-tenant barber shop manager. Each account owns an isolated shop
 - Per-shop customer numbers (01, 02, 03...) generated atomically by PostgreSQL.
 - Daily appointment dashboard, attendance, queue, search, reports, and printable PDF tickets.
 - Shop settings: name, phone, logo, primary/background/panel/text colors.
-- No customer-portal redirect or customer-app dependency in the manager UI.
+- Optional Vercel customer-booking link that can be copied manually when needed.
 - Service catalog: add services, set duration/optional price, activate/deactivate.
 - No appointment deletion control or DELETE database privilege.
 - Duplicate-action lock, visible three-second cooldown, and unique idempotency key for inserts.
+
+## Applications
+
+Manager: `https://redro-barber-manager.vercel.app/`
+
+Customer portal: `https://redro-barber-client.vercel.app/?shop=SHOP_SLUG`
+
+The manager does not redirect to the customer portal. Customer data used for management stays inside the manager's shop-scoped workspace.
 
 ## Authentication setup
 
@@ -19,7 +27,7 @@ The manager uses Supabase email/password authentication. Configure the Supabase 
 
 ## Deployment
 
-GitHub Actions deploys the repository root to GitHub Pages. In repository Settings → Pages, select **GitHub Actions**. The customer portal repository is separate and is not required to operate this manager-only application.
+The manager and customer portal are deployed on Vercel. GitHub Pages is not required for normal use. The customer portal is separate and optional; the manager remains usable without opening it.
 
 ## Isolation and security
 - Every business row carries a shop_id; RLS restricts access to the current shop and its signed-in customers.
@@ -29,10 +37,10 @@ GitHub Actions deploys the repository root to GitHub Pages. In repository Settin
 - Only the Supabase publishable key is used in the browser. Never add a service-role or secret key to this repository.
 
 ## Performance
-- No realtime subscriptions, polling, or background refresh loops beyond the existing appointment update channel.
+- No polling or background refresh loops beyond the existing appointment update channel.
 - Manager loads the dashboard's essential shop, customer, and selected-day appointment data first.
 - Services and availability slots load only when the appointment/settings workflows need them.
 - Database indexes support shop/date, customer, service and queue lookups.
 
 ## Free-only rule
-Use Supabase Free and GitHub free public-repository/Pages allowances only. Do not upgrade or enable paid add-ons. If free quotas are reached, pause usage instead of paying.
+Use Supabase Free and Vercel's existing free deployment allowances only. Do not upgrade or enable paid add-ons. If free quotas are reached, pause usage instead of paying.

@@ -44,6 +44,10 @@ The initial manager load now requests only the data required to show the dashboa
 
 ## Manager-only mode and 404 diagnosis
 
-The manager no longer generates, loads, copies, or displays a customer-portal booking link. The settings screen now clearly states that this is a barber-only management workspace and that customer data does not need to be entered through a separate customer application.
+The manager does not open the customer portal automatically. It shows an optional Vercel booking link that the barber may copy manually when needed; the manager remains usable without opening the customer application.
 
-A direct HTTP check confirmed that both GitHub Pages URLs currently return HTTP 404. This is a repository Pages configuration/deployment issue, not a Supabase customer-data issue. The customer repository was not modified or enabled; only the manager deployment needs to be enabled if the manager is to be opened from GitHub Pages.
+A direct HTTP check confirmed that the Vercel hostnames redro-barber-manager.vercel.app and redro-barber-client.vercel.app respond successfully, while the GitHub Pages URLs return 404. The applications are therefore documented and linked through Vercel; GitHub Pages is not required for normal use.
+
+## Vercel deployment correction
+
+The previous GitHub Pages diagnosis was based on the wrong deployment target. The confirmed live hosts are `https://redro-barber-manager.vercel.app/` and `https://redro-barber-client.vercel.app/`. The manager now points to the client Vercel host only for an optional manually copied booking link and never redirects the barber into the client application.
