@@ -88,6 +88,7 @@
 </main>
 </div>
 </div>
+<div class="modalback" id="customerModal"><div class="modal"><div class="modalhead"><h3>إضافة زبون للمحل</h3><button class="iconbtn" id="closeCustomerModal">✕</button></div><form id="customerForm"><div class="field"><label>اسم الزبون</label><input id="newCustomerName" required maxlength="120"></div><div class="field"><label>رقم الهاتف (اختياري)</label><input id="newCustomerPhone" type="tel" maxlength="40"></div><div class="modalfoot"><button class="btn primary" id="saveCustomer" type="submit">حفظ الزبون</button><button class="btn ghost" id="cancelCustomer" type="button">إلغاء</button></div></form></div></div>
 <div class="modalback" id="appointmentModal"><div class="modal"><div class="modalhead"><h3 id="modalTitle">إضافة موعد</h3><button class="iconbtn" id="closeModal">✕</button></div><form id="appointmentForm"><input type="hidden" id="editingId"><div class="formgrid">
 <div class="field"><label>الزبون</label><select id="customerSelect" required></select><span class="hint">اختر حساب زبون مسجلاً من القائمة.</span></div>
 <div class="field"><label>التاريخ</label><input id="appointmentDate" type="date" required></div>
@@ -139,7 +140,9 @@ async function access(){const {data:{session}}=await db.auth.getSession();if(!se
 $("signOutBtn").onclick=async()=>{await db.auth.signOut();S.shopId=null;S.customers=[];S.appointments=[];$("cloudGate").style.display="flex"};
 document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>setView(b.dataset.view));document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>setView(b.dataset.go));
 ["quickAdd","newAppointment","newAppointment2"].forEach(id=>$(id).onclick=()=>openForm());
-$("newCustomer").onclick=()=>toast("الزبون ينشئ حسابه من تطبيق Redro Barber Client، ثم يظهر هنا للبحث.");
+$("newCustomer").onclick=()=>{$("customerForm").reset();$("customerModal").classList.add("open")};
+$("closeCustomerModal").onclick=$("cancelCustomer").onclick=()=> $("customerModal").classList.remove("open");
+$("customerForm").onsubmit=e=>{e.preventDefault();action("new-customer",$("saveCustomer"),async()=>{const {data,error}=await db.from("customers").insert({shop_id:S.shopId,user_id:null,full_name:$("newCustomerName").value.trim(),phone:$("newCustomerPhone").value.trim()||null}).select("id,customer_number").single();if(error)throw error;$("customerModal").classList.remove("open");await loadCustomers();render();toast("تم إنشاء الزبون رقم "+String(data.customer_number).padStart(2,"0"))})};
 $("closeModal").onclick=$("cancelModal").onclick=()=>$("appointmentModal").classList.remove("open");$("appointmentForm").onsubmit=saveForm;
 $("dateFilter").value=S.date;$("dateFilter").onchange=()=>action("date", $("dateFilter"),async()=>{S.date=$("dateFilter").value||today();await loadAppointments();render()});$("clearDate").onclick=async()=>{S.date=today();$("dateFilter").value=S.date;await loadAppointments();render()};
 ["dashboardSearch","dashboardFilter","appointmentSearch","customerSearch"].forEach(id=>$(id).oninput=render);
