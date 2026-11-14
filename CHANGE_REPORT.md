@@ -59,3 +59,7 @@ The dashboard no longer loads the full customer directory during login. It now l
 ## Customer-specific Vercel links
 
 The manager now provides a `نسخ رابط الدخول` action in the customer directory. It creates a Vercel URL containing the shop slug and that customer's number, so the customer app can load the correct shop and prefill the customer number. The phone is intentionally not placed in the URL because it is the customer's login secret and would be exposed in browser history, copied messages, and referrer logs; the customer enters it on the login screen.
+
+## Theme presets
+
+The manager settings now include six ready-made visual themes: Redro Classic, Royal Blue & Gold, Emerald & Gold, Black & Gold, Ruby & Gold, and Night Violet. Selecting a preset updates the manager immediately; saving persists the four theme colors already stored for the shop. The customer app reads those same saved colors from `shop_settings`, so the selected appearance carries over to the customer experience without a schema change.
