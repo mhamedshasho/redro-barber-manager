@@ -80,3 +80,7 @@ The unused service feature was removed from the manager UI and booking form. App
 ## Availability rules
 
 The manager's optional weekly day-off remains configurable for any day from Monday through Sunday. The manager prevents adding slots on that day or outside the configured opening interval. The customer app now loads the same day-off and opening/closing settings, hides slots outside the interval, hides elapsed slots for today, and disables the booking button until a valid future slot exists.
+
+## Coordinated UI refinement
+
+Added a shared visual refinement layer for the manager: clearer hierarchy, stronger touch targets, calmer toolbar treatment, improved mobile action placement, and more consistent focus and card states.
