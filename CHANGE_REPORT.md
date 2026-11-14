@@ -109,3 +109,7 @@ Appointments are now restricted to whole hours only, such as 1:00, 2:00, and 3:0
 ## Arabic 12-hour time controls
 
 Appointment forms now show hours 1–12 with صباحاً/مساءً and quarter-hour minutes 00, 15, 30 and 45. Users no longer see 13, 16, 21 or 23; the app converts the selected display time to the server's internal 24-hour value.
+
+## Organized settings center
+
+The manager settings screen was reorganized into clear groups: primary account shortcut, shop identity, working hours and weekly day off, app colors and themes, tools and customer link, and data policy. Each group now has a clear purpose and explanation, while the existing IDs, automatic save, cloud sync, and customer-app synchronization remain intact.
