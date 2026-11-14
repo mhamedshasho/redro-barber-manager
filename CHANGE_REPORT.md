@@ -55,3 +55,7 @@ The previous GitHub Pages diagnosis was based on the wrong deployment target. Th
 ## Faster initial barber-data loading
 
 The dashboard no longer loads the full customer directory during login. It now loads only shop settings and the selected day's appointments; appointment customer snapshots supply the names and phone details needed for the dashboard, queue, reports, and ticket printing. The full customer directory loads only when the customer section or a new/edit appointment workflow needs it. This reduces the initial data request set again while keeping customer records out of local storage.
+
+## Customer-specific Vercel links
+
+The manager now provides a `نسخ رابط الدخول` action in the customer directory. It creates a Vercel URL containing the shop slug and that customer's number, so the customer app can load the correct shop and prefill the customer number. The phone is intentionally not placed in the URL because it is the customer's login secret and would be exposed in browser history, copied messages, and referrer logs; the customer enters it on the login screen.
