@@ -67,3 +67,7 @@ The manager settings now include six ready-made visual themes: Redro Classic, Ro
 ## Manager visual cleanup
 
 The manager now has a theme-aware visual layer that overrides the older fixed-color rules: panels, sidebar, navigation, modals, tables, inputs, connection status, and primary buttons follow the selected shop theme. Focus states, hover/press feedback, mobile navigation surfaces, backdrop blur, and reduced-motion handling were also normalized so the manager and customer app share a cleaner interaction language.
+
+## Full mobile-first manager UI rebuild
+
+The accumulated legacy manager stylesheet was removed and replaced with one coherent mobile-first design system. The rebuilt shell uses a compact sticky header, touch-sized controls, responsive two-column cards, a bottom mobile navigation launcher with a clean navigation sheet, mobile bottom-sheet modals, horizontal table scrolling, theme-driven surfaces, and consistent focus/press states. Existing HTML IDs, Supabase logic, appointments, reports and settings behavior were preserved so the rebuild changes the experience without changing business data or booking rules.
