@@ -63,3 +63,7 @@ The manager now provides a `نسخ رابط الدخول` action in the customer
 ## Theme presets
 
 The manager settings now include six ready-made visual themes: Redro Classic, Royal Blue & Gold, Emerald & Gold, Black & Gold, Ruby & Gold, and Night Violet. Selecting a preset updates the manager immediately; saving persists the four theme colors already stored for the shop. The customer app reads those same saved colors from `shop_settings`, so the selected appearance carries over to the customer experience without a schema change.
+
+## Manager visual cleanup
+
+The manager now has a theme-aware visual layer that overrides the older fixed-color rules: panels, sidebar, navigation, modals, tables, inputs, connection status, and primary buttons follow the selected shop theme. Focus states, hover/press feedback, mobile navigation surfaces, backdrop blur, and reduced-motion handling were also normalized so the manager and customer app share a cleaner interaction language.
