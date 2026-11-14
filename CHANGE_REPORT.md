@@ -31,3 +31,9 @@ The current static client still relies on database-side behavior for atomic slot
 The visible manager language is now Arabic-first: English section labels, ID terminology, cloud status wording, report labels, and action text were replaced with clear Arabic wording while keeping the Redro brand name. A quick-use guide was added to the dashboard explaining the order of work: add an available time, add the customer, then create the appointment. The appointment dialog now explains what to fill in before saving, and close controls have accessible labels/tooltips.
 
 The visual layer now includes a calmer instructional banner, stronger focus states, clearer hover/press feedback, gentle card lift and modal entrance animations, a subtle action shimmer, and reduced-motion fallbacks. No business logic or database schema was changed in this visual pass.
+
+## Login speed and anti-double-submit pass
+
+Successful email/password authentication now passes the session returned by Supabase directly into the workspace-loading path instead of immediately calling `getSession()` a second time. This removes one redundant authentication round trip from login.
+
+All mutation buttons using the shared action guard now show `جارٍ التنفيذ…` while the request is active, then remain disabled for a visible three-second countdown (`انتظر 3 ثوانٍ` down to `انتظر 1 ثوانٍ`) before becoming available again. Duplicate presses are ignored with a clear Arabic message, while the existing per-action lock remains in place.
