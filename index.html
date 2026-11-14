@@ -71,8 +71,8 @@
 <div class="settingsgrid">
 <div class="field"><label>اسم المحل / الحلاق</label><input id="shopNameInput" placeholder="Redro Barber Shop"></div>
 <div class="field"><label>رقم الهاتف</label><input id="shopPhoneInput" placeholder="+XXX XXX XXX"></div>
-<div class="field full"><label>شعار المحل</label><div class="logo-upload"><img id="logoPreview" class="hidden" alt="Shop logo"><div id="logoPlaceholder">✂<p class="hint">اختر صورة الشعار لمعاينتها في هذه الجلسة</p></div><input id="logoInput" type="file" accept="image/png,image/jpeg,image/webp"></div></div>
-</div><div style="margin-top:15px"><button class="btn primary" id="saveSettings">تطبيق الإعدادات على المعاينة</button></div></div>
+<div class="field full"><label>شعار المحل</label><div class="logo-upload"><img id="logoPreview" class="hidden" alt="Shop logo"><div id="logoPlaceholder">✂<p class="hint">اختر صورة الشعار لرفعها إلى حساب المحل السحابي</p></div><input id="logoInput" type="file" accept="image/png,image/jpeg,image/webp"></div></div>
+</div><div style="margin-top:15px"><button class="btn primary" id="saveSettings">حفظ إعدادات المحل</button></div></div>
 <div class="panel"><h3 style="margin-top:0">سياسة البيانات</h3><p class="hint">Redro Barber يعمل بنظام Cloud Only في الإصدار النهائي. لا توجد قاعدة بيانات محلية للمواعيد أو الحسابات. إذا انقطع الإنترنت، لن تكون العمليات متاحة حتى يعود الاتصال.</p></div>
 </section>
 <div class="footer">REDRO BARBER MANAGER · FRONTEND PROTOTYPE</div>
@@ -80,7 +80,7 @@
 </div>
 </div>
 <div class="modalback" id="appointmentModal"><div class="modal"><div class="modalhead"><h3 id="modalTitle">إضافة موعد</h3><button class="iconbtn" id="closeModal">✕</button></div><form id="appointmentForm"><input type="hidden" id="editingId"><div class="formgrid">
-<div class="field"><label>الزبون</label><select id="customerSelect" required></select><span class="hint">يمكن اختيار زبون موجود أو إنشاء زبون جديد من دليل الزبائن.</span></div>
+<div class="field"><label>الزبون</label><select id="customerSelect" required></select><span class="hint">اختر حساب زبون مسجلاً من القائمة.</span></div>
 <div class="field"><label>التاريخ</label><input id="appointmentDate" type="date" required></div>
 <div class="field"><label>وقت الموعد</label><input id="appointmentTime" type="time" required></div>
 <div class="field"><label>مدة الحلاقة (دقيقة)</label><input id="duration" type="number" min="5" max="240" step="5" value="30" required></div>
