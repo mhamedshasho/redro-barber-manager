@@ -117,3 +117,7 @@ The manager settings screen was reorganized into clear groups: primary account s
 ## Cloud-only manager mode
 
 Removed the manual settings-save button. Settings are saved automatically to the signed-in Supabase workspace. The manager no longer uses a cached local workspace identifier or local business data, keeps the cloud gate visible until the cloud workspace loads successfully, and blocks the dashboard when the device is offline.
+
+## Queue alerts and chair capacity
+
+Added a cloud-backed chair-count setting with a default of three chairs. The customer queue uses the number of customers ahead and chair capacity to show near-turn and come-now messages. Completing an appointment removes it from the active customer appointment list while preserving the customer account and manager records.
