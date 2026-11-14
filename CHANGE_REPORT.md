@@ -133,3 +133,7 @@ Removed the settings show/hide control. The settings center is now always visibl
 ## Main navigation customer link
 
 Added "نسخ رابط تطبيق الزبون" directly to the main navigation. It copies the current shop's generated customer-app URL and closes the mobile navigation menu after activation.
+
+## Settings categories and schedule controls
+
+Settings now have a clear category menu for shop identity, working hours and queue, appearance, and tools/links. Opening and closing times use Arabic 12-hour selectors with quarter-hour minutes, while hidden values remain server-compatible 24-hour times for overnight schedules. Added `add_chair_count.sql` to enable per-shop chair capacity in Supabase; until that migration is run, the safe default remains three chairs.

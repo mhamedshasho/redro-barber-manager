@@ -43,3 +43,7 @@ The manager and customer portal are deployed on Vercel. GitHub Pages is not requ
 
 ## Free-only rule
 Use Supabase Free and Vercel's existing free deployment allowances only. Do not upgrade or enable paid add-ons. If free quotas are reached, pause usage instead of paying.
+
+### Settings and chair capacity
+
+The settings center is organized into category buttons. Work start/end use Arabic 12-hour selectors and support overnight hours. Run `add_chair_count.sql` once in Supabase to persist each shop's chair capacity; the UI safely falls back to three chairs until the column exists.
