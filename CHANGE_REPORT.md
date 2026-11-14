@@ -129,3 +129,7 @@ Internal appointment-slot preparation now uses the unique key `(shop_id, slot_da
 ## Always-visible settings and customer link
 
 Removed the settings show/hide control. The settings center is now always visible when opened. Added a prominent "نسخ رابط تطبيق الزبون" action that generates the current shop's Vercel customer URL from its cloud slug and copies it to the clipboard.
+
+## Main navigation customer link
+
+Added "نسخ رابط تطبيق الزبون" directly to the main navigation. It copies the current shop's generated customer-app URL and closes the mobile navigation menu after activation.
