@@ -25,3 +25,9 @@ Authenticated Supabase workflows, RLS behavior, database triggers/functions, rea
 ## Remaining issues and recommendations
 
 The current static client still relies on database-side behavior for atomic slot reservation and move/release consistency. A server-side transactional RPC or equivalent database function should be reviewed before claiming full concurrency safety. The README describes Google OAuth while the current manager source presents email/password auth; this is a pre-existing documentation/configuration mismatch that should be reconciled deliberately rather than changing authentication during this UI/logic pass. The stylesheet also contains overlapping responsive overrides; consolidating them should be done alongside visual regression testing.
+
+## Arabic-first usability pass
+
+The visible manager language is now Arabic-first: English section labels, ID terminology, cloud status wording, report labels, and action text were replaced with clear Arabic wording while keeping the Redro brand name. A quick-use guide was added to the dashboard explaining the order of work: add an available time, add the customer, then create the appointment. The appointment dialog now explains what to fill in before saving, and close controls have accessible labels/tooltips.
+
+The visual layer now includes a calmer instructional banner, stronger focus states, clearer hover/press feedback, gentle card lift and modal entrance animations, a subtle action shimmer, and reduced-motion fallbacks. No business logic or database schema was changed in this visual pass.
