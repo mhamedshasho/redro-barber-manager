@@ -113,3 +113,7 @@ Appointment forms now show hours 1–12 with صباحاً/مساءً and quarter
 ## Organized settings center
 
 The manager settings screen was reorganized into clear groups: primary account shortcut, shop identity, working hours and weekly day off, app colors and themes, tools and customer link, and data policy. Each group now has a clear purpose and explanation, while the existing IDs, automatic save, cloud sync, and customer-app synchronization remain intact.
+
+## Cloud-only manager mode
+
+Removed the manual settings-save button. Settings are saved automatically to the signed-in Supabase workspace. The manager no longer uses a cached local workspace identifier or local business data, keeps the cloud gate visible until the cloud workspace loads successfully, and blocks the dashboard when the device is offline.
