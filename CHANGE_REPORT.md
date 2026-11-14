@@ -121,3 +121,7 @@ Removed the manual settings-save button. Settings are saved automatically to the
 ## Queue alerts and chair capacity
 
 Added a cloud-backed chair-count setting with a default of three chairs. The customer queue uses the number of customers ahead and chair capacity to show near-turn and come-now messages. Completing an appointment removes it from the active customer appointment list while preserving the customer account and manager records.
+
+## Duplicate slot login fix
+
+Internal appointment-slot preparation now uses the unique key `(shop_id, slot_date, start_time)` with duplicate-safe upsert behavior. Existing slots are ignored rather than inserted again, and slot preparation no longer blocks manager login if a legacy conflict remains.
