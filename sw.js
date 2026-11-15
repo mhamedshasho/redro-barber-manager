@@ -1,6 +1,6 @@
-const CACHE_NAME = "redro-barber-pwa-v1";
+const CACHE_NAME = "redro-barber-pwa-v2";
 const OFFLINE_URL = "./offline.html";
-const CORE_ASSETS = ["./offline.html", "./icon.svg"];
+const CORE_ASSETS = ["./offline.html", "./icon.svg", "./redro-studio-logo.jpg"];
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS)).then(() => self.skipWaiting()));
@@ -17,7 +17,7 @@ self.addEventListener("fetch", event => {
     event.respondWith(fetch(request).catch(async () => (await caches.match(OFFLINE_URL)) || Response.error()));
     return;
   }
-  if (new URL(request.url).pathname.endsWith("/icon.svg") || new URL(request.url).pathname.endsWith("/offline.html")) {
+  if (new URL(request.url).pathname.endsWith("/icon.svg") || new URL(request.url).pathname.endsWith("/redro-studio-logo.jpg") || new URL(request.url).pathname.endsWith("/offline.html")) {
     event.respondWith(caches.match(request).then(cached => cached || fetch(request)));
   }
 });
