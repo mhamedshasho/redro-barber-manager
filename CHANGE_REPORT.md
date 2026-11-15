@@ -157,3 +157,7 @@ Added single-flight session restoration so startup cannot open duplicate cloud r
 ## Mobile-first visual redesign
 
 Rebuilt the manager presentation layer around the supplied REDRO STUDIO mobile concept: stronger red/black visual hierarchy, larger touch targets, elevated cards, clearer dashboard grouping, responsive bottom navigation on phones, sticky mobile actions, and reduced-motion support. Existing IDs, cloud data, authentication, booking, and settings logic were preserved.
+
+## Real REDRO STUDIO shell rebuild
+
+Replaced the visible manager body shell with a real REDRO STUDIO application structure: studio header, cloud status, profile block, responsive navigation, mobile dock behavior, and view container. Existing view sections and functional IDs were moved into the new structure so authentication, Supabase, appointments, customers, reports, settings, and customer-link actions continue to work.
