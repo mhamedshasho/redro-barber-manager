@@ -109,6 +109,20 @@ html,body{min-height:100%;background:#0b0c0e}
 @media(prefers-reduced-motion:reduce){.studio-app *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
 <style id="toastVisibilityFix">.toast{display:none!important}.toast.show{display:block!important}</style>
+
+<style id="mobileNavigationClearanceFix">
+@media(max-width:760px){
+ html,body{min-height:100%;height:auto;overflow-x:hidden;overflow-y:auto!important}
+ .studio-app{min-height:100dvh;height:auto;overflow:visible!important}
+ .studio-body{min-height:calc(100dvh - 76px);padding-bottom:calc(190px + env(safe-area-inset-bottom))!important;overflow:visible!important}
+ .studio-content{min-height:0;padding-bottom:calc(110px + env(safe-area-inset-bottom))!important;overflow:visible!important}
+ .studio-sidebar{bottom:calc(10px + env(safe-area-inset-bottom))!important;z-index:60!important}
+ .studio-nav{min-height:56px}
+ .studio-content .panel:last-child,.studio-content .view.active>*:last-child{scroll-margin-bottom:calc(190px + env(safe-area-inset-bottom))}
+ .studio-content button[type=submit],.studio-content .modalfoot,.studio-content .form-actions{scroll-margin-bottom:calc(190px + env(safe-area-inset-bottom))}
+}
+@media(min-width:761px){.studio-body{padding-bottom:30px!important}}
+</style>
 </head>
 <body><style>#cloudGate{position:fixed;inset:0;z-index:100;background:#0d0e11f5;display:flex;align-items:center;justify-content:center;padding:16px}#cloudGate .gatebox{width:min(440px,100%);background:#1b1d22;border:1px solid #373b44;border-radius:20px;padding:24px}#cloudGate input{display:block;width:100%;margin:8px 0 12px;background:#111317;border:1px solid #383d46;border-radius:11px;padding:12px;color:#fff}#cloudGate button{border:1px solid #ef343d;background:#ef343d;color:white;border-radius:11px;padding:11px 14px;font-weight:700;cursor:pointer;margin-left:6px}#cloudGate button.alt{background:#292c33;border-color:#454a54}#cloudGate .gate-tabs{display:flex;gap:8px;margin-top:14px}#cloudGate .gate-tabs button{flex:1;margin:0}#cloudGate .gate-tabs button.active{background:#ef343d;border-color:#ef343d}#cloudGate .hidden{display:none!important}#cloudGate p{color:#aeb3bd;font-size:12px;line-height:1.7}#gateMessage{color:#ff9ca2;white-space:pre-wrap}</style><div id="cloudGate"><div class="gatebox"><img class="reference-auth-logo" src="redro-studio-logo.jpg" alt="REDRO STUDIO"><div style="font-size:12px;color:#ff747a;font-weight:800">REDRO BARBER · لوحة الإدارة</div><h2 id="gateTitle">تسجيل دخول الإدارة</h2><p id="gateStatus">جارٍ التحقق من جلسة الدخول…</p><div class="gate-tabs"><button class="active" id="loginMode" type="button">تسجيل الدخول</button><button class="alt" id="signupMode" type="button">إنشاء حساب</button></div><input autocomplete="name" class="hidden" id="gateName" placeholder="اسمك" type="text"/><input autocomplete="email" dir="ltr" id="gateEmail" placeholder="البريد الإلكتروني" type="email"/><input autocomplete="current-password" dir="ltr" id="gatePassword" placeholder="كلمة المرور — 8 محارف على الأقل" type="password"/><button id="gateSubmit" style="width:100%;margin-top:8px">تسجيل الدخول</button><p>كل حساب ينشئ مساحة محل مستقلة محفوظة في Supabase.</p><p id="gateMessage"></p></div></div><div class="app studio-app">
 <header class="studio-topbar">
