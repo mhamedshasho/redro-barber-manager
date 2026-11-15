@@ -18,6 +18,26 @@
 @media(min-width:1051px){.nav-launcher{display:none!important}}
 @media(max-width:720px){.app{padding:9px 10px calc(88px + env(safe-area-inset-bottom))}.topbar{padding:8px 0 13px;margin-bottom:14px}.brandmark{width:40px;height:40px;border-radius:13px;font-size:20px}.brand h1{font-size:14px}.brand p{font-size:9px}.connection{display:none}.top-actions{gap:6px}.top-actions #accountToggle,.top-actions #quickAdd{min-height:39px;padding:7px 10px;font-size:11px}.top-actions #quickAdd span{display:none}.pagehead{align-items:center;margin:2px 0 13px}.pagehead h2{font-size:21px}.pagehead p{font-size:10px}.pagehead>.btn{min-height:39px;padding:7px 10px;font-size:10px}.panel{padding:13px;margin-bottom:11px;border-radius:15px}.panelhead{align-items:center}.panelhead h3{font-size:13px}.panelhead p{font-size:9px}.stat{padding:12px;border-radius:14px}.stat strong{font-size:22px}.queue{grid-template-columns:repeat(2,1fr);gap:7px}.queuecard{padding:10px}.upcoming-item{padding:9px;gap:8px}.upcoming-time{min-width:54px}.upcoming-time b{font-size:14px}.formgrid,.settingsgrid{grid-template-columns:1fr;gap:10px}.field.full{grid-column:auto}.toolbar{gap:7px}.search{min-width:100%}.select{flex:1;min-width:0}table{min-width:690px}.modalback{padding:0;align-items:flex-end}.modal{width:100%;max-height:92vh;border-radius:22px 22px 0 0;padding:16px}.modalfoot{position:sticky;bottom:0;padding-top:12px;background:linear-gradient(transparent,var(--panel) 25%)}.theme-presets{grid-template-columns:repeat(2,1fr)}.guide-banner{padding:11px}.guide-banner p{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+/* BLADE GOLD VISUAL SKIN */
+:root{color-scheme:dark;--bg:#0b0c0e;--panel:#121316;--panel2:#1a1c21;--line:rgba(255,255,255,.09);--text:#f8f9fa;--muted:#9ba1ae;--red:#d4af37;--green:#34d399;--amber:#fbbf24;--radius:20px;--shadow:0 20px 55px #0009}
+body{background:radial-gradient(circle at 18% 10%,rgba(212,175,55,.09),transparent 38%),radial-gradient(circle at 85% 90%,rgba(212,175,55,.045),transparent 42%),#0b0c0e;color:#f8f9fa}
+.app{width:min(1500px,100%);padding:14px 16px 28px}
+.topbar,.sidebar,.panel,.stat,.modal,.queuecard,.connection,.tablewrap{background:#121316!important;border-color:rgba(212,175,55,.17)!important}
+.topbar{border-radius:20px!important;backdrop-filter:blur(18px)}
+.sidebar,.panel,.stat,.tablewrap{border-radius:18px!important;box-shadow:0 12px 35px rgba(0,0,0,.24)}
+button,.btn,.nav button{transition:background .18s ease,border-color .18s ease,transform .18s ease}
+button:hover,.btn:hover{border-color:rgba(212,175,55,.55)!important}
+.btn.primary,.nav button.active{background:linear-gradient(135deg,#e5c158,#c69b2b)!important;color:#111215!important;border-color:#d4af37!important}
+input,select,textarea{background:#0b0c0e!important;border-color:rgba(255,255,255,.1)!important;color:#f8f9fa!important;border-radius:12px!important}
+input:focus,select:focus,textarea:focus{border-color:#d4af37!important;box-shadow:0 0 0 3px rgba(212,175,55,.12)!important}
+.nav button.active{box-shadow:inset -3px 0 #d4af37!important}
+table th{color:#e8c863!important;background:#1a1c21!important}
+table td{border-color:rgba(255,255,255,.07)!important}
+.modal{border:1px solid rgba(212,175,55,.25)!important;border-radius:24px!important}
+#cloudGate{background:radial-gradient(circle at 50% 20%,rgba(212,175,55,.1),transparent 45%),#0b0c0e!important}
+.toast{border:1px solid rgba(212,175,55,.28)!important;background:#1a1c21!important}
+@media(max-width:760px){.app{padding:8px 10px 22px}.topbar{top:6px;border-radius:17px!important}.sidebar{border-radius:20px!important}.panel,.stat{border-radius:16px!important}button,.btn{min-height:38px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style><style id="coordinatedVisualRefinement">
 :root{--focus-ring:color-mix(in srgb,var(--red) 23%,transparent)}
 body{background:radial-gradient(700px 420px at 100% 0,color-mix(in srgb,var(--red) 8%,var(--panel)),transparent 70%),var(--bg)}
