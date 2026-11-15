@@ -329,6 +329,6 @@ $("logoInput").onchange=async e=>{const file=e.target.files?.[0];if(!file)return
 function requireOnline(){if(!navigator.onLine)throw Error("لا يوجد اتصال بالإنترنت. لوحة المدير تعمل على السيرفر فقط.")}window.addEventListener("offline",()=>{$("gateMessage").textContent="انقطع الاتصال. لا يمكن فتح لوحة المدير أو استخدام بيانات محلية.";$("cloudGate").style.display="flex"});window.addEventListener("online",()=>location.reload());db.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_OUT"||!navigator.onLine){S.shopId=null;$("cloudGate").style.display="flex"}else if(event==="SIGNED_IN"&&!S.shopId){access(session).catch(e=>{$("gateMessage").textContent=e.message;$("cloudGate").style.display="flex"})}});
 access().catch(e=>{$("gateStatus").textContent="تعذر استعادة الجلسة تلقائياً";$("gateMessage").textContent=e.message||"تحقق من الاتصال ثم حاول مرة أخرى";$("cloudGate").style.display="flex"});
 
-if ("serviceWorker" in navigator && location.protocol === "https:") { window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {})); }
+if ("serviceWorker" in navigator && location.protocol === "https:") { window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js",{updateViaCache:"none"}).then(reg=>reg.update()).catch(() => {})); }
 </script></body>
 </html>
