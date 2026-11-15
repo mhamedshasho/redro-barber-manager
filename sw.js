@@ -1,0 +1,23 @@
+const CACHE_NAME = "redro-barber-pwa-v1";
+const OFFLINE_URL = "./offline.html";
+const CORE_ASSETS = ["./offline.html", "./icon.svg"];
+
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))).then(() => self.clients.claim()));
+});
+
+self.addEventListener("fetch", event => {
+  const request = event.request;
+  if (request.method !== "GET" || new URL(request.url).origin !== self.location.origin) return;
+  if (request.mode === "navigate") {
+    event.respondWith(fetch(request).catch(async () => (await caches.match(OFFLINE_URL)) || Response.error()));
+    return;
+  }
+  if (new URL(request.url).pathname.endsWith("/icon.svg") || new URL(request.url).pathname.endsWith("/offline.html")) {
+    event.respondWith(caches.match(request).then(cached => cached || fetch(request)));
+  }
+});
