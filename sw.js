@@ -1,4 +1,4 @@
-const CACHE_NAME = "redro-barber-pwa-v4";
+const CACHE_NAME = "redro-barber-pwa-v5";
 const OFFLINE_URL = "./offline.html";
 const CORE_ASSETS = ["./offline.html", "./icon.svg", "./redro-studio-logo.jpg?v=4"];
 
