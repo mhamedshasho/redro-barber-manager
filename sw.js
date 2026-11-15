@@ -1,6 +1,6 @@
-const CACHE_NAME = "redro-barber-pwa-v2";
+const CACHE_NAME = "redro-barber-pwa-v3";
 const OFFLINE_URL = "./offline.html";
-const CORE_ASSETS = ["./offline.html", "./icon.svg", "./redro-studio-logo.jpg"];
+const CORE_ASSETS = ["./offline.html", "./icon.svg", "./redro-studio-logo.jpg?v=3"];
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS)).then(() => self.skipWaiting()));
