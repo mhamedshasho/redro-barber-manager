@@ -153,3 +153,7 @@ Added a corner status badge showing whether the shop is open, closed, or closed 
 ## Automatic login reliability
 
 Added single-flight session restoration so startup cannot open duplicate cloud requests. The manager now shows a clear restoration state and recovers cleanly when the session or network is unavailable.
+
+## Mobile-first visual redesign
+
+Rebuilt the manager presentation layer around the supplied REDRO STUDIO mobile concept: stronger red/black visual hierarchy, larger touch targets, elevated cards, clearer dashboard grouping, responsive bottom navigation on phones, sticky mobile actions, and reduced-motion support. Existing IDs, cloud data, authentication, booking, and settings logic were preserved.
