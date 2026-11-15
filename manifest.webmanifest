@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Redro Barber Manager",
+  "short_name": "Barber Manager",
+  "description": "Manage your barber shop, appointments and queue.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101113",
+  "theme_color": "#e72d40",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
