@@ -54,3 +54,8 @@ GitHub Pages is not required for normal deployment.
 
 The applications are cloud-only and require an internet connection. The manager loads shop and selected-day data as needed; customer booking availability is loaded on demand. Use the existing free-tier allowances only. Do not enable paid services or upgrade plans without the owner's explicit decision.
 
+
+
+## Appointment save integrity
+
+Appointment creation and editing use the `save_staff_appointment` database RPC. The transaction validates staff membership, customer ownership, working hours, weekly day off, appointment overlap, and slot availability, then updates the appointment and its slot together. The customer booking RPC performs the same server-side schedule and overlap checks. The browser prevents selecting elapsed times for today.
