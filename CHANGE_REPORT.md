@@ -171,3 +171,8 @@ Replaced the visible manager body shell with a real REDRO STUDIO application str
 - Cancelled, rejected, and no-show appointments release their reserved slot. Clearing notes is supported.
 - The manager synchronizes visible time selectors before validating hidden schedule values. The client portal rejects past dates, elapsed times today, and stale slots outside the saved schedule.
 - Cloud-only operation, existing authentication flows, RLS, Vercel hosting, and optional appointment duration are preserved.
+
+
+## 2026-11-21 — no-show slot release
+
+The database slot-sync trigger now releases the reserved slot when an appointment is marked `no_show`, just as it does for cancelled or rejected appointments. If the attendance status is changed back to confirmed, the trigger attempts to reserve the same slot again and rejects the change if another booking has taken it.
