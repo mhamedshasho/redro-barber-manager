@@ -279,7 +279,9 @@ function setView(n){document.querySelectorAll(".view").forEach(v=>v.classList.to
 function openForm(id){if(!S.customersLoaded){toast("جارٍ تجهيز قائمة الزبائن…");ensureCustomers().then(()=>openForm(id)).catch(()=>toast("تعذر تجهيز قائمة الزبائن، حاول مرة أخرى"));return}$("appointmentForm").reset();$("editingId").value=id||"";const a=S.appointments.find(x=>x.id===id),customerRequest=!!id&&a?.status==="waiting";$("modalTitle").textContent=customerRequest?"مراجعة طلب موعد":id?"تعديل الموعد":"إضافة موعد";$("saveAppointment").textContent=customerRequest?"حفظ وموافقة":id?"حفظ التعديلات":"حفظ الموعد";$("customerSelect").value=a?.customerId||S.customers[0]?.id||"";$("appointmentDate").value=a?.date||S.date;setClock("appointment",a?.time||"12:00");$("duration").value=a?.duration??"";$("notes").value=a?.notes||"";$("appointmentModal").classList.add("open")}
 async function saveForm(e){
  e.preventDefault();
+ syncClock("appointment");
  await action("save-appointment",$("saveAppointment"),async()=>{
+  syncClock("appointment");
   const id=$("editingId").value,previous=id?S.appointments.find(x=>x.id===id):null;
   const selectedCustomer=cBy($("customerSelect").value);
   const c=selectedCustomer||(previous?cBy(previous.customerId):null);
