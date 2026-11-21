@@ -300,11 +300,21 @@ async function saveForm(e){
   const conflict=await db.from("appointments").select("id").eq("shop_id",S.shopId).eq("appointment_date",date).eq("start_time",time).neq("id",id||"00000000-0000-0000-0000-000000000000").not("status","in","(cancelled,rejected,no_show)").maybeSingle();
   if(conflict.error)throw conflict.error;
   if(conflict.data)throw Error("هذا الوقت محجوز بالفعل");
-  const timeChanged=!!previous&&(previous.date!==date||previous.time!==time);const payload={shop_id:S.shopId,customer_id:c.id,appointment_date:date,start_time:time,duration_minutes:duration,slot_id:timeChanged?null:(previous?.slotId||null),customer_name_snapshot:c.name,customer_phone_snapshot:c.phone||null,status:dbStatus[ui]||"confirmed",notes:notesValue||previous?.notes||null};
-  const result=id?await db.from("appointments").update(payload).eq("id",id).eq("shop_id",S.shopId):await db.from("appointments").insert({...payload,idempotency_key:crypto.randomUUID()});
+  const timeChanged=!!previous&&(previous.date!==date||previous.time!==time);
+  const matchingSlot=await db.from("appointment_slots").select("id,status,appointment_id").eq("shop_id",S.shopId).eq("slot_date",date).eq("start_time",time+":00").maybeSingle();
+  if(matchingSlot.error)throw matchingSlot.error;
+  if(matchingSlot.data&&matchingSlot.data.status==="booked"&&matchingSlot.data.appointment_id!==id)throw Error("هذا الوقت محجوز بالفعل، اختر وقتاً آخر");
+  const slotId=matchingSlot.data?.id||(timeChanged?null:(previous?.slotId||null));
+  const payload={shop_id:S.shopId,customer_id:c.id,appointment_date:date,start_time:time,duration_minutes:duration,slot_id:slotId,customer_name_snapshot:c.name,customer_phone_snapshot:c.phone||null,status:dbStatus[ui]||"confirmed",notes:notesValue||previous?.notes||null,updated_at:new Date().toISOString()};
+  const result=id
+   ?await db.from("appointments").update(payload).eq("id",id).eq("shop_id",S.shopId).select("id").maybeSingle()
+   :await db.from("appointments").insert({...payload,idempotency_key:crypto.randomUUID()}).select("id").single();
   if(result.error)throw result.error;
+  if(!result.data?.id)throw Error("لم يتم حفظ التعديل في قاعدة البيانات. تحقق من صلاحيات المحل ثم أعد المحاولة");
   $("appointmentModal").classList.remove("open");
-  await loadAppointments();render();toast(id?"تم تعديل الموعد":"تمت إضافة الموعد");
+  S.date=date;
+  $("dateFilter").value=date;
+  await loadAppointments();render();toast(id?"تم حفظ تعديلات الموعد":"تم حفظ الموعد");
  })
 }
 async function setAppointmentDecision(id,status,button){const reason=prompt(status==="confirmed"?"ملاحظة للزبون (اختياري)، مثلاً تغيير الوقت بسبب حجز سابق:":"سبب رفض الموعد (اختياري):","");if(reason===null)return;await action("decision:"+id,button,async()=>{const {error}=await db.from("appointments").update({status:dbStatus[status],barber_note:reason.trim()||null,updated_at:new Date().toISOString()}).eq("id",id).eq("shop_id",S.shopId);if(error)throw error;await loadAppointments();render();toast(status==="confirmed"?"تمت الموافقة وإرسال الملاحظة للزبون":"تم رفض الموعد وإرسال الملاحظة")})}
