@@ -161,3 +161,13 @@ Rebuilt the manager presentation layer around the supplied REDRO STUDIO mobile c
 ## Real REDRO STUDIO shell rebuild
 
 Replaced the visible manager body shell with a real REDRO STUDIO application structure: studio header, cloud status, profile block, responsive navigation, mobile dock behavior, and view container. Existing view sections and functional IDs were moved into the new structure so authentication, Supabase, appointments, customers, reports, settings, and customer-link actions continue to work.
+
+
+## 2026-11-21 — appointment save and booking integrity
+
+- The manager now saves and edits appointments through `save_staff_appointment`, a transaction-safe RPC scoped to the signed-in shop.
+- The database validates schedule hours, weekly day off, customer ownership, time increments, optional duration, slot availability, and overlapping appointment intervals.
+- Manager edits and customer bookings serialize by shop and appointment date so simultaneous requests cannot reserve conflicting times.
+- Cancelled, rejected, and no-show appointments release their reserved slot. Clearing notes is supported.
+- The manager synchronizes visible time selectors before validating hidden schedule values. The client portal rejects past dates, elapsed times today, and stale slots outside the saved schedule.
+- Cloud-only operation, existing authentication flows, RLS, Vercel hosting, and optional appointment duration are preserved.
