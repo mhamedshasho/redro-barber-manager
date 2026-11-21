@@ -20,7 +20,7 @@ The existing dark red/black RTL interface, mobile navigation, Supabase client, R
 
 ## Not performed
 
-Authenticated Supabase workflows, RLS behavior, database triggers/functions, real appointment concurrency, Google/email provider configuration, live customer data preservation, and mobile/desktop browser rendering could not be exercised safely without a test account and explicit test data. No production writes were made.
+Authenticated end-to-end appointment workflows, real concurrent customer bookings, Google/email provider configuration, and mobile/desktop browser rendering were not exercised against live customer data. For the 2026-11-21 repair, the Supabase function definitions, migration history, grants, and slot-sync trigger were updated and inspected; no appointment or customer rows were modified.
 
 ## Remaining issues and recommendations
 
