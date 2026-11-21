@@ -286,12 +286,12 @@ async function saveForm(e){
   const date=$("appointmentDate").value||previous?.date||"";
   const time=$("appointmentTime").value||previous?.time||"";
   const rawDuration=$("duration").value;
-  const duration=rawDuration===""?(previous?.duration??null):Number(rawDuration);
+  const duration=rawDuration===""?null:Number(rawDuration);
   const ui=$("serviceStatus").value||previous?.status||"confirmed";
   const notesValue=$("notes").value.trim();
   if(!c)throw Error("اختَر زبوناً لهذا الموعد");
   if(!date||date<today())throw Error("اختر تاريخاً صحيحاً من اليوم أو بعده");
-  if(!/^\\d{2}:(00|15|30|45)$/.test(time))throw Error("اختر وقتاً صحيحاً");
+  if(!/^\d{2}:(00|15|30|45)$/.test(time))throw Error("اختر وقتاً صحيحاً");
   if(duration!==null&&(!Number.isFinite(duration)||duration<5||duration>240))throw Error("مدة الموعد يجب أن تكون بين 5 و240 دقيقة");
   const toMin=v=>Number(String(v).slice(0,2))*60+Number(String(v).slice(3,5)),startMin=toMin(S.shop.workStart),endMin=toMin(S.shop.workEnd),timeMin=toMin(time),inside=startMin===endMin?false:endMin>startMin?timeMin>=startMin&&timeMin<endMin:timeMin>=startMin||timeMin<endMin;
   const dayOff=S.shop.weeklyDayOff&&(Number(S.shop.weeklyDayOff)===(new Date(date+"T12:00:00").getDay()||7));
