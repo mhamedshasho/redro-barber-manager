@@ -276,7 +276,7 @@ async function load(){await Promise.all([loadAppointments(),loadSettings()]);ren
 let appointmentChannel=null;
 function subscribeAppointments(){if(appointmentChannel)db.removeChannel(appointmentChannel);appointmentChannel=db.channel("manager-appointments-"+S.shopId).on("postgres_changes",{event:"*",schema:"public",table:"appointments",filter:"shop_id=eq."+S.shopId},async()=>{try{await loadAppointments();render()}catch(e){toast("تعذر تحديث المواعيد تلقائياً")}}).subscribe()}
 function setView(n){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+n));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===n));document.querySelector(".sidebar").classList.remove("mobile-open");$("navBackdrop").classList.remove("open");const launcher=$("navLauncher");if(launcher){launcher.setAttribute("aria-expanded","false");launcher.textContent="القائمة"}if(n==="customers"&&!S.customersLoaded)ensureCustomers().catch(()=>toast("تعذر تحميل قائمة الزبائن حالياً"));if(n==="settings"){}window.scrollTo({top:0,behavior:"smooth"})}
-function openForm(id){if(!S.customersLoaded){toast("جارٍ تجهيز قائمة الزبائن…");ensureCustomers().then(()=>openForm(id)).catch(()=>toast("تعذر تجهيز قائمة الزبائن، حاول مرة أخرى"));return}$("appointmentForm").reset();$("editingId").value=id||"";const a=S.appointments.find(x=>x.id===id);$("modalTitle").textContent=id?"تعديل الموعد":"إضافة موعد";$("customerSelect").value=a?.customerId||S.customers[0]?.id||"";$("appointmentDate").value=a?.date||S.date;setClock("appointment",a?.time||"12:00");$("duration").value=a?.duration??"";$("serviceStatus").value=a?.status||"confirmed";$("notes").value=a?.notes||"";$("appointmentModal").classList.add("open")}
+function openForm(id){if(!S.customersLoaded){toast("جارٍ تجهيز قائمة الزبائن…");ensureCustomers().then(()=>openForm(id)).catch(()=>toast("تعذر تجهيز قائمة الزبائن، حاول مرة أخرى"));return}$("appointmentForm").reset();$("editingId").value=id||"";const a=S.appointments.find(x=>x.id===id),customerRequest=!!id&&a?.status==="waiting";$("modalTitle").textContent=customerRequest?"مراجعة طلب موعد":id?"تعديل الموعد":"إضافة موعد";$("saveAppointment").textContent=customerRequest?"حفظ وموافقة":id?"حفظ التعديلات":"حفظ الموعد";$("customerSelect").value=a?.customerId||S.customers[0]?.id||"";$("appointmentDate").value=a?.date||S.date;setClock("appointment",a?.time||"12:00");$("duration").value=a?.duration??"";$("serviceStatus").value=customerRequest?"confirmed":a?.status||"confirmed";$("notes").value=a?.notes||"";$("appointmentModal").classList.add("open")}
 async function saveForm(e){
  e.preventDefault();
  await action("save-appointment",$("saveAppointment"),async()=>{
@@ -287,7 +287,7 @@ async function saveForm(e){
   const time=String($("appointmentTime").value||previous?.time||"").slice(0,5);
   const rawDuration=$("duration").value;
   const duration=rawDuration===""?null:Number(rawDuration);
-  const ui=$("serviceStatus").value||previous?.status||"confirmed";
+  const ui=previous?.status==="waiting"?"confirmed":$("serviceStatus").value||previous?.status||"confirmed";
   const notesValue=$("notes").value.trim();
   if(!c)throw Error("اختَر زبوناً لهذا الموعد");
   if(!date||date<today())throw Error("اختر تاريخاً صحيحاً من اليوم أو بعده");
